@@ -17,11 +17,20 @@
             <label for="title" class="form-label">Título de la tarea</label>
             <input type="text" class="form-control" name="title" id="title">            
       </div>        
-        <button type="submit" class="btn btn-primary">Crear tarea</button>
+      
+      <label for="category_id" class="form-label">Categoría de la tarea </label>
+       <select name="category_id" class="form-select">
+             @foreach ($categories as $category )
+                <option value="{{ $category->id  }}"> {{ $category->name  }} </option>
+             @endforeach
+       </select>
+       
+       <button type="submit" class="btn btn-primary">Crear tarea</button>
       </form>
       
       <div>
          @foreach ( $todos as $todo)
+           <div class="row py-1">
             <div class="col-md-9 d-flex align-items-center">
               <a href="{{ route('todos-edit',['id' => $todo->id]) }}">{{$todo->title}}</a>
             </div>
@@ -33,6 +42,7 @@
                 <button class="btn btn-danger btn-sm">Eliminar</button>
               </form>
             </div>
+          </div> 
          @endforeach
       </div>  
    </div>   
